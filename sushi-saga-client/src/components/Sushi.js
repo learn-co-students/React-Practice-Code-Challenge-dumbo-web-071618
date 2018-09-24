@@ -2,12 +2,7 @@ import React, { Fragment } from 'react'
 
 const Sushi = (props) => {
   const handleClick = () => {
-    if (!props.eaten) {
-      props.consumeSushi(props.data)
-    }
-    else {
-      console.log('theres nothing there!')
-    }
+    props.consumeSushi(props.data)
   }
   return (
     <div className="sushi">

@@ -10,14 +10,22 @@ class App extends Component {
     sushis: [],
     eatenSushi: [],
     sushiIdx: 0,
-    moneyRemaining: 500
+    moneyRemaining: 20
   }
 
+  sushiEaten = (sushi) =>
+    this.state.eatenSushi.find(eSushi => eSushi.id === sushi.id)
+  
+  canAffordSushi = (sushi) =>
+    this.state.moneyRemaining - sushi.price > 0
+
   consumeSushi = (sushi) => {
-    this.setState( prevState => ({
-      eatenSushi: [...prevState.eatenSushi, sushi],
-      moneyRemaining: prevState.moneyRemaining - sushi.price
-    }))
+    if (!this.sushiEaten(sushi) && this.canAffordSushi(sushi)) {      
+      this.setState( prevState => ({
+        eatenSushi: [...prevState.eatenSushi, sushi],
+        moneyRemaining: prevState.moneyRemaining - sushi.price
+      }))
+    }
   }
 
   getMoney = () => {
