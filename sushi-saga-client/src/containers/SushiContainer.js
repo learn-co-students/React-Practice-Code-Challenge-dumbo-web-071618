@@ -6,9 +6,7 @@ const SushiContainer = (props) => {
   const sushiEaten = sushi => 
     props.eatenSushi.find( eatenSushi => eatenSushi.id === sushi.id)
   
-  const handleClick = () => {
-    props.getNewSushiSet()
-  }
+  const handleClick = (fn) => (event) => fn()
 
   return (
     <Fragment>
@@ -23,7 +21,11 @@ const SushiContainer = (props) => {
                 eaten={sushiEaten(sushi)} />
           )
         }
-        <MoreButton handleClick={handleClick} />
+        <MoreButton handleClick={handleClick(props.getNewSushiSet)} />
+
+        <button onClick={handleClick(props.getMoney)}>
+          Borrow Money
+        </button>
       </div>
     </Fragment>
   )

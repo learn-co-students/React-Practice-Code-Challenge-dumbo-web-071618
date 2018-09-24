@@ -20,6 +20,12 @@ class App extends Component {
     }))
   }
 
+  getMoney = () => {
+    this.setState(prevState => ({
+      moneyRemaining: prevState.moneyRemaining + 100
+    }))
+  }
+
   getNewSushiSet = () => {
     this.setState( prevState => ({
       sushiIdx: (prevState.sushiIdx + 4) % 100
@@ -39,6 +45,7 @@ class App extends Component {
     return (
       <div className="app">
         <SushiContainer
+          getMoney={this.getMoney}
           getNewSushiSet={this.getNewSushiSet}
           consumeSushi={this.consumeSushi}
           eatenSushi={this.state.eatenSushi}
