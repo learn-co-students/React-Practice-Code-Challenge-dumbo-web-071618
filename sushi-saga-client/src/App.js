@@ -17,30 +17,30 @@ class App extends Component {
       end: null,
       clicked: 0,
       emptyPlate: [],
-      budget: 50
+      budget: 65
     }
   }
 
   componentDidMount() {
-      fetch(API, () => {})
-      .then(r => r.json())
-      .then(r => this.setState({ allSushi: [ ...this.state.allSushi, ...r ] }))
-      .then(r => this.findFish())
-      }
+    fetch(API, () => {})
+    .then(r => r.json())
+    .then(r => this.setState({ allSushi: [ ...this.state.allSushi, ...r ] }))
+    .then(r => this.findFish())
+    }
 
-      handler(e) {
-        e.preventDefault()
-        this.setState({
-          clicked: this.state.clicked + 1
-        }, this.findFish())
-      }
+  handler(e) {
+    e.preventDefault()
+    this.setState({
+      clicked: this.state.clicked + 1
+    }, this.findFish())
+  }
 
-      secondHandler = (arg) => {
-        this.setState({
-          emptyPlate: [...this.state.emptyPlate, {1: 1}],
-          budget: this.state.budget - arg
-        })
-      }
+  secondHandler = (arg) => {
+    this.setState({
+      emptyPlate: [...this.state.emptyPlate, {1: 1}],
+      budget: this.state.budget - arg
+    })
+  }
 
   findFish() {
     if (this.state.clicked === 0) {
@@ -57,8 +57,6 @@ class App extends Component {
           })
         }
       }
-
-
 
   render() {
     return (
